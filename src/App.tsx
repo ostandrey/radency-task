@@ -1,25 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Employees from "./components/Employees";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="container-lg mt-4">
+        <h1 className="text-center">Radency employees</h1>
+        <div className="row">
+          <div className="col-4">
+            <label htmlFor="formFile" className="form-label">Upload the .csv file</label>
+            <input className="form-control mt-2 mb-2" type="file" id="formFile"/>
+          </div>
+        </div>
+        <Employees/>
+      </div>
   );
 }
 
