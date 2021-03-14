@@ -1,26 +1,18 @@
 import React, {useContext} from "react";
-import EmployeesStore from "../store/EmployeesStore";
+import EmployeesStore, {IEmployee} from "../store/EmployeesStore";
 import {CSVReader} from "react-papaparse";
+import {observer} from "mobx-react";
 
-
-
-
-const Employees = () => {
+const Employees = (): JSX.Element => {
 
     const employeesStore = useContext(EmployeesStore);
     const { employees, setEmployeesData } = employeesStore;
-    const handleOnDrop = (data: any) => {
-        setEmployeesData(data);
-        console.log(employees)
-    };
-    return(
-        <div>
-            <CSVReader onFileLoad={(data) => {
-                console.log(data);
-            handleOnDrop(data)}
-            }
 
-            config={{header: true}}>
+    return (
+        <div>
+            <CSVReader
+                onFileLoad={(data) => { setEmployeesData(data)} }
+                config={{header: true}}>
                 <span>scv</span>
             </CSVReader>
             <table className="table">
@@ -42,25 +34,24 @@ const Employees = () => {
                 </thead>
                 <tbody>
                 {
-                    employees.map(({data}: any) => {
-                            return(
-                                <tr key={data.id}>
-                                    <th scope="row">1</th>
-                                    <td>{data.ful_name}</td>
-                                    <td>{data.phone}</td>
-                                    <td>{data.email}</td>
-                                    <td>{data.age}</td>
-                                    <td>{data.experience}</td>
-                                    <td>{data.yearly_income}</td>
-                                    <td>{data.has_children}</td>
-                                    <td>{data.license_states}</td>
-                                    <td>{data.expiration_date}</td>
-                                    <td>{data.license_number}</td>
-                                    <td>{data.duplicate_with}</td>
-                                </tr>
-                            )
-                        }
-                    )
+                    employees.map((data: IEmployee, index: number) => {
+                        return(
+                            <tr key={index}>
+                                <th scope="row">{index + 1}</th>
+                                <td>{data.ful_name}</td>
+                                <td>{data.phone}</td>
+                                <td>{data.email}</td>
+                                <td>{data.age}</td>
+                                <td>{data.experience}</td>
+                                <td>{data.yearly_income}</td>
+                                <td>{data.has_children}</td>
+                                <td>{data.license_states}</td>
+                                <td>{data.expiration_date}</td>
+                                <td>{data.license_number}</td>
+                                <td>{data.duplicate_with}</td>
+                            </tr>
+                        )
+                    })
                 }
 
                 </tbody>
@@ -70,4 +61,4 @@ const Employees = () => {
     )
 };
 
-export default Employees
+export default observer(Employees)
