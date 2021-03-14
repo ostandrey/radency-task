@@ -2,9 +2,9 @@ import { observable, action } from "mobx";
 import {createContext} from "react";
 
 
-class EmployeesStore {
+class EmployeesStore implements IEmployeesStore {
 
-    @observable employees: any = [];
+    @observable employees: IEmployee[] = [];
 
     @action setEmployeesData = (data: any) => {
         this.employees = data;
