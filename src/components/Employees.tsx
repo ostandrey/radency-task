@@ -13,9 +13,9 @@ const Employees = (): JSX.Element => {
             <CSVReader
                 onFileLoad={(data) => { setEmployeesData(data)} }
                 config={{header: true}}>
-                <span>scv</span>
+                <span>Click to add scv file</span>
             </CSVReader>
-            <table className="table">
+            <table className="table mt-3">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
