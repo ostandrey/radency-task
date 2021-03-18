@@ -2,6 +2,8 @@ import React, {useContext} from "react";
 import EmployeesStore, {IEmployee} from "../store/EmployeesStore";
 import {CSVReader} from "react-papaparse";
 import {observer} from "mobx-react";
+import {ageValidator, hasChildrenValidator, licenseValidator} from "../validators";
+import {experienceValidator} from "../validators";
 
 const Employees = (): JSX.Element => {
 
