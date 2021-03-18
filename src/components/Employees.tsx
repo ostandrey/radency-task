@@ -15,47 +15,64 @@ const Employees = (): JSX.Element => {
                 config={{header: true}}>
                 <span>Click to add scv file</span>
             </CSVReader>
-            <table className="table mt-3">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Ful nme</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Experience</th>
-                    <th scope="col">Yearly income</th>
-                    <th scope="col">Has children</th>
-                    <th scope="col">License states</th>
-                    <th scope="col">Expiration date</th>
-                    <th scope="col">License number</th>
-                    <th scope="col">Duplicate with</th>
-                </tr>
-                </thead>
-                <tbody>
-                {
-                    employees.map((data: IEmployee, index: number) => {
-                        return(
-                            <tr key={index}>
-                                <th scope="row">{index + 1}</th>
-                                <td>{data.ful_name}</td>
-                                <td>{data.phone}</td>
-                                <td>{data.email}</td>
-                                <td>{data.age}</td>
-                                <td>{data.experience}</td>
-                                <td>{data.yearly_income}</td>
-                                <td>{data.has_children}</td>
-                                <td>{data.license_states}</td>
-                                <td>{data.expiration_date}</td>
-                                <td>{data.license_number}</td>
-                                <td>{data.duplicate_with}</td>
-                            </tr>
-                        )
-                    })
-                }
+            {
+                employees.length === 0
+                ?
+                    <div className="d-flex justify-content-center mt-2">
+                        Waiting for file
+                    </div>
+                    :
+                    <table className="table mt-3">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Ful nme</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Experience</th>
+                            <th scope="col">Yearly income</th>
+                            <th scope="col">Has children</th>
+                            <th scope="col">License states</th>
+                            <th scope="col">Expiration date</th>
+                            <th scope="col">License number</th>
+                            <th scope="col">Duplicate with</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            employees.map((data: IEmployee) => {
+                                return(
+                                    <tr key={data.id}>
+                                        <th scope="row">{data.id}</th>
+                                        <td>{data.full_name}</td>
+                                        <td>{data.phone}</td>
+                                        <td>{data.email}</td>
+                                        <td className={ageValidator(data.age) ? '' : 'bg-danger'}>
+                                            {data.age}
+                                        </td>
+                                        <td className={experienceValidator(data.experience, data.age) ? '' : 'bg-danger'}>
+                                            {data.experience}
+                                        </td>
+                                        <td>{data.yearly_income}</td>
+                                        <td className={hasChildrenValidator(data.has_children) ? '' : 'bg-danger'}>
+                                            {data.has_children}
+                                        </td>
+                                        <td>{data.license_states}</td>
+                                        <td>{data.expiration_date}</td>
+                                        <td className={licenseValidator(data.license_number) ? '' : 'bg-danger'}>
+                                            {data.license_number}
+                                        </td>
+                                        <td>{data.duplicate_with}</td>
+                                    </tr>
+                                )
+                            })
+                        }
 
-                </tbody>
-            </table>
+                        </tbody>
+                    </table>
+            }
+
         </div>
 
     )
