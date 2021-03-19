@@ -1,4 +1,4 @@
-import {observable, action, makeAutoObservable, computed} from "mobx";
+import {observable, action, makeAutoObservable} from "mobx";
 import {createContext} from "react";
 
 export interface IParsedData {
