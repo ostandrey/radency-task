@@ -28,7 +28,7 @@ const Employees = (): JSX.Element => {
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Ful nme</th>
+                            <th scope="col">Full name</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Email</th>
                             <th scope="col">Age</th>
